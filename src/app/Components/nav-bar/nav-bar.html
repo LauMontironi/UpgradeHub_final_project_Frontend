@@ -1,4 +1,5 @@
 <nav class="navbar-links">
+    <img src="/src/app/images/tulogo.jpg" alt="tulogoaqui" class="logo">
     <ul>
         <li routerLink="/reservas">
             Reservas
@@ -7,20 +8,25 @@
             Pedidos
         </li>
         <li routerLink="/menus">
-            Ver Menus
+            Menu
         </li>
         <li routerLink="/platos">
-            Ver Platos
+            Platos
         </li>
         <li (click)="onLogout()">
             Logout
         </li>
+
         <li routerLink="/login">
             Login
         </li>
         <li routerLink="/registro">
             Registro
         </li>
-
     </ul>
+
+    <div class="top-bar container d-flex justify-content-end gap-3">
+        <i class="fa-brands fa-facebook-f" src="#"></i>
+        <i class="fa-brands fa-instagram" src=""></i>
+    </div>
 </nav>

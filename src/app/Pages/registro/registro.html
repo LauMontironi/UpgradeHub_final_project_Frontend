@@ -1,1 +1,87 @@
-<p>registro works!</p>
+<div class="titleregistro">
+    <h1>Registro</h1>
+    <p>Complete todos los campos para registrarse!</p>
+</div>
+
+
+<form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+        <label class="form-label">Nombre</label>
+        <input type="text" class="form-control" formControlName="nombre">
+        @if(checkError('nombre', 'required')){
+        <p class="error">El campo nombre es requerido!</p>
+        }
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Apellidos</label>
+        <input type="text" class="form-control" formControlName="apellido">
+        @if(checkError('apellido', 'required')){
+        <p class="error">El campo apellidos es requerido!</p>
+        }
+    </div>
+
+    <div>
+        <label class="form-label">DNI/NIE</label>
+        <input type="text" class="form-control" formControlName="dni">
+        @if(checkError('dni', 'dniValidator')){
+        <p class="error">El formato de tu DNI/NIE no es válido</p>
+        }
+        @if(checkError('dni', 'required')){
+        <p class="error">El campo dni es requerido!</p>
+        }
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" formControlName="email">
+        @if(checkError('email', 'pattern')){
+        <p class="error">El email no es válido </p>
+        }
+        @if(checkError('email', 'required')){
+        <p class="error"> el campo email es obligatorio </p>
+        }
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Telefono</label>
+        <input type="tel" class="form-control" formControlName="telefono">
+        @if(checkError('telefono', 'required')){
+        <p class="error">El campo telefono es requerido!</p>
+        }
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Fecha de nacimiento</label>
+        <input type="date" class="form-control" formControlName="fechaNacimiento">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Alergias</label>
+        <input type="text" class="form-control" formControlName="alergias">
+    </div>
+
+    <div class="mb-3 password">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-control" formControlName="password">
+        <button type="button" (click)="cambiarTipoInput()">
+            <i class="fa-regular fa-eye fa-shake"></i>
+        </button>
+        @if(checkError('password', 'passwordMatchValidator')){
+        <p class="error">Las contraseñas no coinciden</p>
+        }
+    </div>
+
+    <div class="mb-3 password">
+        <label class="form-label">Confirmar Password</label>
+        <input type="password" class="form-control" formControlName="confirmPassword">
+        <button type="button" (click)="cambiarTipoInput()">
+            <i class="fa-regular fa-eye"></i>
+        </button>
+        @if(checkFormError('passwordMismatch')){
+        <p class="error">Las contraseñas no coinciden</p>
+        }
+    </div>
+
+    <input type="submit" value="Enviar" class="btn btn-info">
+</form>

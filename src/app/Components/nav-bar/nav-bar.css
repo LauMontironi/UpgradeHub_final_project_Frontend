@@ -6,6 +6,7 @@ nav {
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
     box-sizing: border-box;
+    display: flex;
 }
  
 /* Lista horizontal */
@@ -53,4 +54,11 @@ nav li:last-child {
  
 nav li:last-child:hover {
     background: rgba(239, 68, 68, 0.22);
+}
+
+.top-bar{
+    display: flex;
+    gap: 12px;
+    margin-left: auto;
+    color: #e5e7eb;
 }

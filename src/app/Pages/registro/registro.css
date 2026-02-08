@@ -1,0 +1,59 @@
+.titleregistro {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 1rem;
+    color: #333;
+}
+
+form {
+    max-width: 400px;
+    margin: 1rem auto;
+    padding: 2rem;
+    border: 1px solid #001957;
+    border-radius: 5px;
+}
+
+.ng-invalid.ng-touched {
+    border-color: lightcoral;
+}
+
+.ng-validng.ng-dirty {
+    border-color: lightgreen;
+}
+
+.error {
+    color: lightcoral;
+    font-size: 14px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.mb-3.password {
+    margin-bottom: 1rem;
+    position: relative;
+
+    button {
+        position: absolute;
+        right: 10px;
+        bottom: 7px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        display: flex;
+        align-items: center;
+
+        i {
+            color: #24008f;
+            font-size: 1.1rem;
+        }
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+}
