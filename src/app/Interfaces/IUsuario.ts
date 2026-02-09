@@ -1,13 +1,14 @@
 export interface IUsuario {
-  id: number;
+  id?: number; 
   nombre: string;
   apellido: string;
+  dni: string;
   email: string;
+  password: string;
   telefono: string;
-  edad: number; // en registro se pide fecha de nacimiento, pero para simplificar el backend solo maneja edad
-  alergias: string; // string u opciones predefinidas?
-  dni: string; // falta agtregar el campo dni en el backend para que esto funcione correctamente!!
-  password: string; // TODO: falta agregar el campo password en el backend para que esto funcione correctamente!
+  edad: number; 
+  alergias: string;
+  rol: string //'cliente' | 'admin'; por defecto saiemre cliente 
 }
 
 

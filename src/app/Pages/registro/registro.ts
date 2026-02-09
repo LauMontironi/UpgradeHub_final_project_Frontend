@@ -1,6 +1,8 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import Swal from 'sweetalert2'; 
+import { Usuarios } from '../../Services/usuarios';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro',
@@ -9,6 +11,9 @@ import Swal from 'sweetalert2';
   styleUrl: './registro.css',
 })
 export class Registro {
+
+    usuarioService = inject(Usuarios);
+    router= inject(Router);
 
   // signal
   inputType = signal<string>('password');
@@ -21,7 +26,7 @@ export class Registro {
     apellido: new FormControl(null, [
       Validators.required
     ]),
-    email: new FormControl('example@example.com', [
+    email: new FormControl(null, [
       Validators.required,
       Validators.pattern(/^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?(?:\.[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?)+$/),
     ]),
@@ -30,10 +35,12 @@ export class Registro {
       this.dniValidator.bind(this), Validators.required
       ]),
     telefono: new FormControl('', [Validators.required]),
-    fechaNacimiento: new FormControl('dd-mm-aa', [
-      Validators.required
-    ]),
+    // fechaNacimiento: new FormControl('dd-mm-aa', [
+    //   Validators.required
+    // ]),
     alergias: new FormControl(''),
+    edad: new FormControl(null, [
+      Validators.required]),
     password: new FormControl('', [
       Validators.required
     ]),
@@ -45,18 +52,40 @@ export class Registro {
   });
 
   // funciones
-  onSubmit() {
-    // if (this.registroForm.valid) {
-      console.log(this.registroForm.value);
-      Swal.fire({
-        title: 'Registro exitoso',
-        text: '¡Usuario registrado correctamente!',
+  async onSubmit() {
+  if (this.registroForm.valid) {
+    try {
+      // 1. Llamada al servicio con los datos del formulario
+      const response = await this.usuarioService.registro(this.registroForm.value);
+      console.log('Registro exitoso:', response);
+
+      // 2. SweetAlert de éxito
+      await Swal.fire({
+        title: '¡Registro exitoso!',
+        text: 'Usuario registrado correctamente.',
         icon: 'success',
-        confirmButtonText: 'Aceptar',
+        confirmButtonText: 'Ir al Login'
       });
-      this.registroForm.reset();
-    
+
+      // 3. Redirección al login
+      this.router.navigate(['/login']);
+
+    } catch (error) {
+      console.error('Error en el registro:', error);
+
+      // 4. SweetAlert de fracaso
+      Swal.fire({
+        title: 'Error',
+        text: 'No se pudo completar el registro. Inténtalo de nuevo.',
+        icon: 'error',
+        confirmButtonText: 'Cerrar'
+      });
+    }
+  } else {
+    // Opcional: marcar errores si el formulario no es válido al clicar
+    this.registroForm.markAllAsTouched();
   }
+}
 
   dniValidator(control: AbstractControl): ValidationErrors | null {
     const value: string = control.value;

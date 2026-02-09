@@ -1,0 +1,22 @@
+<div class="card bg-dark text-white border-warning p-4 shadow-lg">
+    <div class="text-center mb-4">
+        <h2 class="display-5 text-warning">{{ datos().menu.titulo }}</h2>
+        <p class="lead">{{ datos().menu.descripcion }}</p>
+        <span class="badge bg-success fs-4">{{ datos().menu.precio }}€</span>
+    </div>
+
+    <div class="row g-3">
+        @for (plato of datos().platos; track plato.id) {
+        <div class="col-md-4">
+            <div class="card h-100 bg-secondary border-0 shadow-sm">
+                <img [src]="plato.imagen_url" class="card-img-top" style="height: 150px; object-fit: cover;">
+                <div class="card-body">
+                    <h6 class="text-uppercase text-warning fw-bold small">{{ plato.rol }}</h6>
+                    <h5 class="card-title">{{ plato.nombre }}</h5>
+                    <p class="card-text small text-white-50">{{ plato.descripcion }}</p>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</div>
