@@ -1,32 +1,65 @@
-<nav class="navbar-links">
-    <img src="/src/app/images/tulogo.jpg" alt="tulogoaqui" class="logo">
-    <ul>
-        <li routerLink="/reservas">
-            Reservas
-        </li>
-        <li routerLink="/pedidos">
-            Pedidos
-        </li>
-        <li routerLink="/menus">
-            Menu
-        </li>
-        <li routerLink="/lista_platos">
-            Platos
-        </li>
-        <li (click)="onLogout()">
-            Logout
-        </li>
+<header class="site-header">
+    <nav class="navbar">
+        <!-- Botón hamburguesa (izquierda) -->
+        <button class="hamburger" type="button" (click)="toggleMenu()" aria-label="Abrir menú">
+            <span></span><span></span><span></span>
+        </button>
 
-        <li routerLink="/login">
-            Login
-        </li>
-        <li routerLink="/registro">
-            Registro
-        </li>
-    </ul>
+        <!-- Logo centrado -->
+        <a class="brand" routerLink="/" aria-label="Home">
+            <img class="logo" src="/src/assets/images/Captura de pantalla 2026-02-09 a las 14.16.55.jpeg" alt="Logo">
+        </a>
 
-    <div class="top-bar container d-flex justify-content-end gap-3">
-        <i class="fa-brands fa-facebook-f" src="#"></i>
-        <i class="fa-brands fa-instagram" src=""></i>
-    </div>
-</nav>
+        <!-- Acciones derecha (como en la foto) -->
+        <div class="right-actions">
+            <a class="pill" routerLink="/reservas">Reservar</a>
+            <a class="pill" routerLink="/pedidos">Hacer pedido</a>
+            <a class="pill" routerLink="/login">Mi cuenta</a>
+        </div>
+    </nav>
+
+    <!-- OVERLAY -->
+    <div class="overlay" [class.show]="menuOpen" (click)="closeMenu()"></div>
+
+    <!-- PANEL LATERAL -->
+    <aside class="drawer" [class.open]="menuOpen" (click)="$event.stopPropagation()">
+        <div class="drawer-header">
+            <span class="drawer-title">Menú</span>
+            <button class="close" type="button" (click)="closeMenu()" aria-label="Cerrar menú">✕</button>
+        </div>
+
+        <ul class="drawer-links">
+            <li>
+                <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+                    (click)="closeMenu()">Inicio</a>
+            </li>
+            <li>
+                <a routerLink="/menus" routerLinkActive="active" (click)="closeMenu()">Carta</a>
+            </li>
+            <li>
+                <a routerLink="/lista_platos" routerLinkActive="active" (click)="closeMenu()">Sugerencias</a>
+            </li>
+
+            <li class="divider"></li>
+
+            <li>
+                <a routerLink="/reservas" routerLinkActive="active" (click)="closeMenu()">Reservas</a>
+            </li>
+            <li>
+                <a routerLink="/pedidos" routerLinkActive="active" (click)="closeMenu()">Pedidos</a>
+            </li>
+
+            <li class="divider"></li>
+
+            <li class="auth">
+                <a routerLink="/login" routerLinkActive="active" (click)="closeMenu()">Log in</a>
+                <span>/</span>
+                <a routerLink="/registro" routerLinkActive="active" (click)="closeMenu()">Registro</a>
+            </li>
+
+            <li>
+                <a href="#" (click)="onLogout(); $event.preventDefault(); closeMenu()">Logout</a>
+            </li>
+        </ul>
+    </aside>
+</header>

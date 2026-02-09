@@ -17,3 +17,4 @@ export const routes: Routes = [
     { path: 'pedidos', component: Pedidos },
     {path: 'lista_platos', component: ListaPlatos}
 ];
+
