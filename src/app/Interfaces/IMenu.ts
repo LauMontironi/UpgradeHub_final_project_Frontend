@@ -1,13 +1,9 @@
 export interface IMenu {
   id: number;
-  fecha: string;
-  nombre: string;   // o date?
+  numero: number;
+  titulo: string; 
   descripcion: string;
-  foto_url: string;
   precio: number;
+  activo: number;             // 1 = activo, 0 = inactivo
 }
 
-export interface IMenuResponse {
-  msg: string;
-  item: IMenu;
-}

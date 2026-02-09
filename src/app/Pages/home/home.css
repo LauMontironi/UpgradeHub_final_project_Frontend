@@ -1,0 +1,166 @@
+/* HERO */
+.hero-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 16px;
+    background: #121212;
+    /* negro roto del resto de la página */
+}
+
+/* BLOQUE CON IMAGEN DE FONDO */
+.claim {
+    width: 100%;
+    max-width: 1100px;
+    height: 80vh;
+    min-height: 500px;
+
+    background-image: url('/assets/images/OIG3.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /* efecto foto fija al scrollear */
+
+    border-radius: 20px;
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    color: white;
+    padding: 40px;
+    overflow: hidden;
+}
+
+/* Oscurecer imagen para que se lea el texto */
+.claim::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+}
+
+.claim * {
+    position: relative;
+    z-index: 1;
+}
+
+.claim h1 {
+    font-size: clamp(36px, 5vw, 70px);
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.claim h4 {
+    font-size: clamp(16px, 2vw, 22px);
+    margin-bottom: 25px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Botones */
+.btn-hero {
+    background: white;
+    color: #111;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.btn-hero:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* Botón secundario */
+.btn-hero--ghost {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.btn-hero--ghost:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* En móviles el efecto fixed se desactiva (limitación navegador) */
+@media (max-width: 768px) {
+    .claim {
+        background-attachment: scroll;
+    }
+}
+
+/* ABOUT US (simple y limpio) */
+#aboutus {
+    background: #121212;
+    color: #f2f2f2;
+    padding: 64px 16px;
+}
+
+#aboutus .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    align-items: center;
+}
+
+#aboutus figure {
+    margin: 0;
+}
+
+#aboutus img {
+    width: 100%;
+    border-radius: 16px;
+    display: block;
+    object-fit: cover;
+    max-height: 420px;
+}
+
+.about-text h2 {
+    margin: 0 0 8px;
+    font-size: 34px;
+}
+
+.about-text h2 span {
+    opacity: 0.9;
+}
+
+.about-text h5 {
+    margin: 0 0 18px;
+    opacity: 0.85;
+    font-weight: 600;
+}
+
+.about-text p {
+    margin: 0 0 12px;
+    line-height: 1.6;
+    opacity: 0.92;
+}
+
+/* responsive */
+@media (min-width: 900px) {
+    #aboutus .container {
+        grid-template-columns: 1.1fr 0.9fr;
+    }
+}
+
+/* Nota: en móviles a veces background-attachment: fixed se ignora */
+@media (max-width: 768px) {
+    #hero {
+        background-attachment: scroll;
+    }
+}

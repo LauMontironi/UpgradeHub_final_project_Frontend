@@ -1,15 +1,41 @@
-<h1>Nuestros Menús</h1>
+<section class="py-5" style="background-color: #1a1a1a;">
+    <div class="container">
 
-<div class="menus">
-    @for (menu of menus; track menu.id) {
-    <div class="menu-card">
-        <h2>{{ menu.nombre }}</h2>
-        <p class="precio">$ {{ menu.precio }}</p>
-        <p>{{ menu.descripcion }}</p>
-
-        <button>
-            Ver especificaciones
+        @if (menuSeleccionado()) {
+        <button class="btn btn-outline-warning mb-4" (click)="menuSeleccionado.set(null)">
+            ← Volver a todos los menús
         </button>
+
+        <app-card-menu [datos]="menuSeleccionado()!" />
+
+        } @else {
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-bold text-white">Nuestros <span style="color: #ffc107;">Menús</span></h1>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            @for (menu of arrMenu(); track menu.id) {
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-lg text-center"
+                    style="background-color: #242424; border-radius: 20px;">
+                    <div class="card-body p-4 d-flex flex-column">
+                        <h2 class="h3 card-title fw-bold text-white">{{ menu.titulo }}</h2>
+                        <div class="mb-3">
+                            <span class="display-6 fw-bold" style="color: #4caf50;">{{ menu.precio }}€</span>
+                        </div>
+                        <p class="text-white-50">{{ menu.descripcion }}</p>
+
+                        <div class="mt-auto">
+                            <button (click)="cargarDetalle(menu.id)" class="btn w-100 py-2 fw-bold text-uppercase"
+                                style="background: linear-gradient(45deg, #ffc107, #ff9800); border-radius: 12px; color: #000;">
+                                Ver especificaciones
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+        }
     </div>
-    }
-</div>
+</section>
