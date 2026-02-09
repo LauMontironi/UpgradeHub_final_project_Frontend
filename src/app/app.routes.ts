@@ -6,6 +6,7 @@ import { Registro } from './Pages/registro/registro';
 import { Reservas } from './Pages/reservas/reservas';
 import { Pedidos } from './Pages/pedidos/pedidos';
 import { ListaPlatos } from './Pages/lista-platos/lista-platos';
+import { AdminDashboard } from './Pages/admin-dashboard/admin-dashboard';
 
 export const routes: Routes = [
     { path: '', component: Home },
@@ -15,5 +16,7 @@ export const routes: Routes = [
     { path: 'registro', component: Registro },
     { path: 'reservas', component: Reservas },
     { path: 'pedidos', component: Pedidos },
-    {path: 'lista_platos', component: ListaPlatos}
+    { path: 'lista_platos', component: ListaPlatos },
+    { path: 'admin', component: AdminDashboard },
+    { path: 'menus/:id', component: Menu }
 ];

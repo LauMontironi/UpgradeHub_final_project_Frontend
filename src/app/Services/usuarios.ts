@@ -2,7 +2,7 @@
 import { firstValueFrom } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { IUsuario , RegisterResponse } from '../Interfaces/IUsuario';
+import { ILogin, IUsuario , RegisterResponse } from '../Interfaces/IUsuario';
 
 
 @Injectable({
@@ -16,8 +16,12 @@ export class Usuarios {
 
   //metodo post
 
-    registro(nuevoUsuario: IUsuario) {
+  registro(nuevoUsuario: IUsuario) {
     return firstValueFrom(
-      this.HttpClient.post<RegisterResponse>(`${this.base_url}/auth/register`, nuevoUsuario))} 
+      this.HttpClient.post<RegisterResponse>(`${this.base_url}/auth/register`, nuevoUsuario))
   }
+  
+
+ 
+}
 
