@@ -1,64 +1,195 @@
-nav {
-    width: 100%;
-    background: #111827;
-    /* gris-azul oscuro */
-    padding: 12px 16px;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
-    box-sizing: border-box;
-    display: flex;
-}
- 
-/* Lista horizontal */
-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    flex-wrap: wrap;
-    /* para que no rompa en móvil */
-}
- 
-/* Items */
-nav li {
-    color: #e5e7eb;
-    /* texto claro */
-    padding: 10px 12px;
-    border-radius: 10px;
-    cursor: pointer;
-    user-select: none;
-    font-weight: 600;
-    transition: background 180ms ease, color 180ms ease, transform 120ms ease;
-}
- 
-/* Hover / foco */
-nav li:hover {
-    background: rgba(255, 255, 255, 0.10);
-    transform: translateY(-1px);
-}
- 
-nav li:active {
-    transform: translateY(0);
-    background: rgba(255, 255, 255, 0.14);
-}
- 
-/* Separador visual opcional para "Logout" (último) */
-nav li:last-child {
-    margin-left: auto;
-    /* empuja Logout a la derecha */
-    background: rgba(239, 68, 68, 0.15);
-    color: #fecaca;
-}
- 
-nav li:last-child:hover {
-    background: rgba(239, 68, 68, 0.22);
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: #0e0f10;
 }
 
-.top-bar{
+/* NAVBAR */
+.navbar {
+    height: 76px;
+    width: min(1200px, 92%);
+    margin: 0 auto;
     display: flex;
-    gap: 12px;
-    margin-left: auto;
-    color: #e5e7eb;
+    align-items: center;
+    gap: 14px;
+    justify-content: space-between;
+}
+
+/* Hamburguesa circular (como Sibuya) */
+.hamburger {
+    width: 46px;
+    height: 46px;
+    border-radius: 999px;
+    border: 0;
+    background: #e6dcc9;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    padding: 0 13px;
+    cursor: pointer;
+}
+
+.hamburger span {
+    height: 2px;
+    width: 100%;
+    background: #0e0f10;
+    border-radius: 2px;
+}
+
+/* Logo centrado */
+.brand {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    margin: 0 auto;
+}
+
+.logo {
+    height: 48px;
+    width: auto;
+    display: block;
+}
+
+/* Botones derecha */
+.right-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.pill {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border-radius: 999px;
+    font-size: 14px;
+    background: #e6dcc9;
+    color: #0e0f10;
+    white-space: nowrap;
+}
+
+/* OVERLAY */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* DRAWER */
+.drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: min(360px, 86vw);
+    background: #111214;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+    z-index: 60;
+    box-shadow: 20px 0 60px rgba(0, 0, 0, 0.45);
+    padding: 16px 16px 22px;
+}
+
+.drawer.open {
+    transform: translateX(0);
+}
+
+.drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 4px 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.drawer-title {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.close {
+    background: transparent;
+    border: 0;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 20px;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 10px;
+}
+
+.close:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.drawer-links {
+    list-style: none;
+    margin: 14px 0 0;
+    padding: 0;
+}
+
+.drawer-links li {
+    display: block;
+}
+
+.drawer-links a {
+    display: block;
+    padding: 14px 10px;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-radius: 12px;
+}
+
+.drawer-links a:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.drawer-links a.active {
+    background: rgba(255, 255, 255, 0.10);
+}
+
+.divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    margin: 10px 0;
+}
+
+.auth {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 10px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.auth a {
+    display: inline-block;
+    padding: 10px 0;
+    border-radius: 0;
+    text-transform: uppercase;
+}
+
+@media (max-width: 820px) {
+
+    .right-actions .pill:nth-child(1),
+    .right-actions .pill:nth-child(2) {
+        display: none;
+        /* en móvil oculta reservar/pedido si quieres */
+    }
 }

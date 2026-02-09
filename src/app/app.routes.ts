@@ -20,3 +20,4 @@ export const routes: Routes = [
     { path: 'admin', component: AdminDashboard },
     { path: 'menus/:id', component: Menu }
 ];
+
