@@ -1,0 +1,65 @@
+/* Contenedor principal: Fondo negro total y centrado */
+.create-menu-container {
+    background-color: #1a1a1a;
+    /* El negro de tu web */
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* La tarjeta del formulario: Blanca y estrecha */
+.form-card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 30px;
+    width: 100%;
+    max-width: 500px;
+    /* Aquí controlamos que no se expanda */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+/* Títulos en negro para que resalten sobre el blanco */
+.form-card h2 {
+    color: #1a1a1a;
+    font-size: 1.5rem;
+}
+
+/* Etiquetas del formulario */
+.form-label {
+    color: #333;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+/* Inputs claros con borde fino */
+.form-control {
+    background-color: #f8f9fa !important;
+    border: 1px solid #ddd !important;
+    color: #333 !important;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.form-control:focus {
+    border-color: #ffc107 !important;
+    /* Mantenemos tu amarillo de marca */
+    box-shadow: 0 0 5px rgba(255, 193, 7, 0.3) !important;
+}
+
+/* Botón principal */
+.btn-save {
+    background-color: #ffc107;
+    border: none;
+    color: #000;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 8px;
+    transition: background 0.3s;
+}
+
+.btn-save:hover {
+    background-color: #e5ac00;
+}

@@ -131,6 +131,7 @@ return next(req);
 
 ng generate guard guards/Auth --skip-tests y les ponemos los guards a las rutas pedidos/admin/reservas
 
+<<<<<<< HEAD
 ###TODO:
 
 ## 1/ EL FORMULARIO DE RESERVAS : debe tener mesa o ea ue elijan mesa por un desplegable
@@ -183,6 +184,8 @@ Edad o fecha de nacimiento? no podemos cambiarlo en el back?
 sugerencias ; cambiar el formulario para que quede mas ancho no ?
 Ok, formulario arreglado. Además añadí un botón abajo para redirigir al login si ya tienes cuenta✅
 
+=======
+>>>>>>> feature/lau-login-auth
 ## resumen conexiones con backend:
 
 ### GET ALL MENUES ( MENU_SEMANAL ) PUBLIC ✅

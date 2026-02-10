@@ -25,47 +25,58 @@ export class Login {
   })
 
 
- async onSubmit() {
-   // 1. Verificamos si el formulario es válido antes de enviar
-  console.log('Datos del formulario:', this.loginForm.value);
+async onSubmit() {
   if (this.loginForm.invalid) {
-    this.loginForm.markAllAsTouched(); // Marca los campos para que salten los errores de CSS
+    this.loginForm.markAllAsTouched();
     return;
   }
 
   try {
     const response = await this.usuarioService.login(this.loginForm.value);
+    console.log('Respuesta completa del servidor:', response);
 
-    // 2. Guardamos el token 
-    if (response && response.token) {
-      localStorage.setItem('token', response.token);
+    // 1. EXTRAEMOS LOS DATOS (Usando los nombres exactos de tu log)
+    const token = response.Token; 
+    const userData = response.user; // <-- Cambiado de 'item' a 'user' para que coincida con tu log
 
-    //  ### TODO ://PROBAMOS LA PAGINA QUE DIJO MARIO ? angular toastr
+    if (token && userData) {
+      // 2. GUARDAMOS EN LOCALSTORAGE
+      localStorage.setItem('token', token);
+      localStorage.setItem('user_role', userData.rol);
+      localStorage.setItem('user_name', userData.nombre);
+      
+      console.log('Token y User guardados. Mostrando alerta...');
+
+      // 3. MENSAJE DE ÉXITO
       await Swal.fire({
         title: '¡Bienvenido!',
-        text: 'Inicio de sesión correcto',
+        text: `Hola, ${userData.nombre}. Inicio de sesión correcto`,
         icon: 'success',
         timer: 1500,
         showConfirmButton: false
       });
 
-      if (this.loginForm.value.email === 'admin@retaurante.com'){
-        this.Router.navigateByUrl('/admin')
-      }else
-      
-      this.Router.navigateByUrl('/reserva'); 
+      // 4. REDIRECCIÓN SEGÚN ROL
+      if (userData.rol === 'admin') {
+        console.log('Es admin, yendo al dashboard...');
+        this.Router.navigateByUrl('/admin-dashboard');
+      } else {
+        console.log('Es cliente, yendo a reserva...');
+        this.Router.navigateByUrl('/reserva');
+      }
+    } else {
+      console.error('El servidor no envió Token o user correctamente');
     }
 
   } catch (error) {
-
+    console.error('Error detallado en Login:', error);
     await Swal.fire({
       title: 'Error al iniciar sesión',
-      text: 'Usuario o contraseña incorrectos. Por favor, inténtelo de nuevo.',
-      icon: 'error', 
+      text: 'Credenciales incorrectas o error de servidor.',
+      icon: 'error',
       confirmButtonColor: '#ffc107',
       confirmButtonText: 'Reintentar'
     });
-    console.error('Error en Login:', error);
   }
   }
   
