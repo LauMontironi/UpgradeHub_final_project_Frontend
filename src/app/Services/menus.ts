@@ -25,4 +25,15 @@ export class Menus {
       this.HttpClient.get<IMenuDetalle>(`${this.base_url}/menus-semanales/${id}`)
     )
   }
+  createMenu(menu: IMenu) {
+    return firstValueFrom(
+      this.HttpClient.post<IMenu>(`${this.base_url}/menus-semanales`, menu)
+ )}
+
+  deleteMenu(id: number) {
+  return firstValueFrom(
+    this.HttpClient.delete<{"msg": string}>(`${this.base_url}/menus-semanales/${id}`)
+  );
+}
+
 }

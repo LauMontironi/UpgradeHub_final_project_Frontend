@@ -24,6 +24,6 @@ export interface ILogin {
 
 export interface LoginResponse {
   msg: string;
-  token: string;
-  item: IUsuario;
+  Token: string;
+  user: IUsuario;
 }

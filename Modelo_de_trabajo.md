@@ -131,51 +131,6 @@ return next(req);
 
 ng generate guard guards/Auth --skip-tests y les ponemos los guards a las rutas pedidos/admin/reservas
 
-###TODO:
-
-## 1/ EL FORMULARIO DE RESERVAS : debe tener mesa o ea ue elijan mesa por un desplegable
-
-## tenemos segun el backend 5 mesas con estas capacidades .
-
-id | nº mesa | capacidad | is active
-1 1 2 1
-2 2 2 1
-3 3 4 1
-4 4 4 1
-5 5 6 1
-
-### 2/ Y PREGUNTAR A MARIO TEMA TABLAS COMO ENLAZAMOS RESERAS Y MESAS .. PARA ENGANCHAR CON ESTE FORMULARIO
-
-### 3/ login , si es admin redirijo a dashboard, si es cliente a reseervas hacer un if dentro del ts de login . hora mismo esta redireccionando a reservas siempre.
-
-### 4 / logout logout que aparezca en el navbar y == > ponerle un evento al boton y borrar el localstorage token ESTO EN EL TS DE LA NAVBAR
-
-onLogOut() {
-//borro el token
-localStorage.removeItem('token');
-//redirecicion al login
-// o aerta de verdad quieres salir ? bla bl
-this.router.navigateByUrl('/login')
-}
-
-### 5/ NAV BAR @if isLoggedcliente () ve pedidos reservas logout
-
-### @ifis logged admin ve todo + admindashboard // como hago esta distincion ?
-
-### 6/ que a cada card de la pgina menus , se le aparezca un boton de reservar si el usuario esta logueado. mismo dentro de las especificaciones ❌ falta
-
-### 7/ formulario : validad la edaad por ejemplo que si es menor no entra ❌ falta
-
-### 8/ una pagina de not found ? o el path a la home ? ❌ falta
-
-### 9/ formulario de registro ponerle al password un toggle par que se ueda paretar y ver la contraseña ue se esta escribiendo
-
-### 10 / rutas post y put de la pagina dashboard
-
-### 11/ BOTONES DE VOLVER POR TODOS LADOS
-
-sugerencias ; cambiar el formulario para que quede mas ancho no ?
-
 ## resumen conexiones con backend:
 
 ### GET ALL MENUES ( MENU_SEMANAL ) PUBLIC ✅

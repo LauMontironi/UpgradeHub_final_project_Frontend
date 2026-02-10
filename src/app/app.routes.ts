@@ -8,6 +8,7 @@ import { Pedidos } from './Pages/pedidos/pedidos';
 import { ListaPlatos } from './Pages/lista-platos/lista-platos';
 import { AdminDashboard } from './Pages/admin-dashboard/admin-dashboard';
 import { authGuard } from './guards/auth-guard';
+import { CreateMenu } from './Components/create-menu/create-menu';
 
 export const routes: Routes = [
     { path: '', component: Home },
@@ -20,7 +21,8 @@ export const routes: Routes = [
     { path: 'admin', component: AdminDashboard, canActivate: [authGuard] },
     { path: 'menus/:id', component: Menu },
     { path: 'reserva', component: Reserva, canActivate: [authGuard] },
-    {path:'login', component: Login},
+    { path: 'login', component: Login },
+    { path: 'admin/create-menu', component: CreateMenu }
     
 ];
 

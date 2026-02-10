@@ -3,7 +3,7 @@
 
         @if (menuSeleccionado()) {
         <button class="btn btn-outline-warning mb-4" (click)="menuSeleccionado.set(null)">
-            ← Volver a todos los menús
+            <i class="bi bi-arrow-left me-2"></i> Volver a todos los menús
         </button>
 
         <app-card-menu [datos]="menuSeleccionado()!" />
@@ -11,28 +11,44 @@
         } @else {
         <div class="text-center mb-5">
             <h1 class="display-4 fw-bold text-white">Nuestros <span style="color: #ffc107;">Menús</span></h1>
+            <p class="text-muted">Descubre nuestras propuestas semanales preparadas con ingredientes frescos.</p>
         </div>
 
         <div class="row g-4 justify-content-center">
             @for (menu of arrMenu(); track menu.id) {
             <div class="col-12 col-md-6 col-lg-4">
-                <div class="card h-100 border-0 shadow-lg text-center"
-                    style="background-color: #242424; border-radius: 20px;">
+                <div class="card h-100 border-0 shadow-lg text-center position-relative"
+                    style="background-color: #242424; border-radius: 20px; transition: transform 0.3s ease;">
+
+                    <div class="position-absolute top-0 start-0 m-3">
+                        <span class="badge rounded-pill bg-warning text-dark px-3 py-2 shadow-sm fw-bold"
+                            style="font-size: 0.8rem;">
+                            <i class="bi bi-calendar3 me-1"></i> {{ menu.fecha }}
+                        </span>
+                    </div>
+
                     <div class="card-body p-4 d-flex flex-column">
-                        <h2 class="h3 card-title fw-bold text-white">{{ menu.titulo }}</h2>
-                        <div class="mb-3">
+                        <h2 class="h3 card-title fw-bold text-white mt-5 mb-3">{{ menu.titulo }}</h2>
+
+                        <div class="mb-4">
                             <span class="display-6 fw-bold" style="color: #4caf50;">{{ menu.precio }}€</span>
                         </div>
-                        <p class="text-white-50">{{ menu.descripcion }}</p>
+
+                        <p class="text-white-50 mb-4">{{ menu.descripcion }}</p>
 
                         <div class="mt-auto">
-                            <button (click)="cargarDetalle(menu.id)" class="btn w-100 py-2 fw-bold text-uppercase"
-                                style="background: linear-gradient(45deg, #ffc107, #ff9800); border-radius: 12px; color: #000;">
+                            <button (click)="cargarDetalle(menu.id)"
+                                class="btn w-100 py-3 fw-bold text-uppercase shadow-sm"
+                                style="background: linear-gradient(45deg, #ffc107, #ff9800); border-radius: 12px; color: #000; border: none;">
                                 Ver especificaciones
                             </button>
                         </div>
                     </div>
                 </div>
+            </div>
+            } @empty {
+            <div class="text-center py-5">
+                <p class="text-muted">No hay menús disponibles en este momento.</p>
             </div>
             }
         </div>
