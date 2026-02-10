@@ -1,24 +1,28 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Usuarios } from '../../Services/usuarios';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
+
+
 export class Login {
-usuarioService = inject(Usuarios);
-  Router=inject(Router);
+  usuarioService = inject(Usuarios);
+  Router = inject(Router);
+  // signal
+  inputType = signal<string>('password');
 
 
-loginForm: FormGroup = new FormGroup({
-  email: new FormControl(),
-  password: new FormControl(),
-})
+  loginForm: FormGroup = new FormGroup({
+    email: new FormControl(),
+    password: new FormControl(),
+  })
 
 
  async onSubmit() {
@@ -63,6 +67,10 @@ loginForm: FormGroup = new FormGroup({
     });
     console.error('Error en Login:', error);
   }
-}
+  }
+  
+  cambiarTipoInput() {
+    this.inputType.update(val => val === 'password' ? 'text' : 'password');
+  }
 
 }

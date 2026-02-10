@@ -135,6 +135,8 @@ ng generate guard guards/Auth --skip-tests y les ponemos los guards a las rutas 
 
 ## 1/ EL FORMULARIO DE RESERVAS : debe tener mesa o ea ue elijan mesa por un desplegable
 
+discrepo aquiii, para mi el cliente no debe reservar una mesa sino que un sitio para x cantidad de pax. Luego admin debe asignarle la "mesa" segun cantidad y disponibilidad. Por ende el admin puede "jugar" y modificar las mesas que tiene disponibles. Tenemos que ver cómo se puede hacer esto...
+
 ## tenemos segun el backend 5 mesas con estas capacidades .
 
 id | nº mesa | capacidad | is active
@@ -166,6 +168,8 @@ this.router.navigateByUrl('/login')
 
 ### 7/ formulario : validad la edaad por ejemplo que si es menor no entra ❌ falta
 
+Edad o fecha de nacimiento? no podemos cambiarlo en el back?
+
 ### 8/ una pagina de not found ? o el path a la home ? ❌ falta
 
 ### 9/ formulario de registro ponerle al password un toggle par que se ueda paretar y ver la contraseña ue se esta escribiendo
@@ -174,7 +178,10 @@ this.router.navigateByUrl('/login')
 
 ### 11/ BOTONES DE VOLVER POR TODOS LADOS
 
+✅Está hecho en login y registro como boton de escape. ❌Falta en el resto de paginas
+
 sugerencias ; cambiar el formulario para que quede mas ancho no ?
+Ok, formulario arreglado. Además añadí un botón abajo para redirigir al login si ya tienes cuenta✅
 
 ## resumen conexiones con backend:
 
@@ -197,3 +204,6 @@ sugerencias ; cambiar el formulario para que quede mas ancho no ?
 ### RESERVAS LOGUEADO COMO CLIENTE❌
 
 ### LOGIN -OK ❌
+
+Realice varios cambios a todos los <a href="#"> que me fui encontrando, más que nada para usar los routerLink!. En angular nos han dicho que no los usemos así, sustituirlos por button. En todo el nav-bar por ejemplo.
+Preguntar si es correcto usarlo al menos para redes sociales ?

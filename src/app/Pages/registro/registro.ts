@@ -2,11 +2,11 @@ import { Component, inject, signal } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import Swal from 'sweetalert2'; 
 import { Usuarios } from '../../Services/usuarios';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-registro',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './registro.html',
   styleUrl: './registro.css',
 })
@@ -15,8 +15,9 @@ export class Registro {
     usuarioService = inject(Usuarios);
     router= inject(Router);
 
-  // signal
-  inputType = signal<string>('password');
+  // signals
+  inputTypePassword = signal<string>('password');
+  inputTypeConfirmPassword = signal<string>('password');
 
   // FormGroup para manejar el formulario de registro:
   registroForm: FormGroup = new FormGroup({
@@ -135,8 +136,12 @@ export class Registro {
     return this.registroForm.hasError(errorName) && (this.registroForm.get('password')?.touched || this.registroForm.get('confirmPassword')?.touched)
   }
 
-  cambiarTipoInput() {
-    this.inputType.update(val => val === 'password' ? 'text' : 'password');
+  cambiarTipoInput(field: 'password' | 'confirmPassword') {
+    if (field === 'password') {
+      this.inputTypePassword.update(val => val === 'password' ? 'text' : 'password');
+    } else {
+      this.inputTypeConfirmPassword.update(val => val === 'password' ? 'text' : 'password');
+    }
   }
 
 
