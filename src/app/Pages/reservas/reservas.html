@@ -21,7 +21,7 @@
                 <div class="grid">
                     <div class="field">
                         <label for="fecha">Fecha</label>
-                        <input id="fecha" type="date" formControlName="fecha_reserva" [min]="minDate" />
+                        <input id="fecha" type="date" formControlName="fecha" [min]="minDate" />
                         @if(showError('fecha_reserva')) {
                         <small class="error">Elige una fecha válida.</small>
                         }
@@ -54,7 +54,7 @@
 
                     <div class="field">
                         <label for="personas">Nº de personas</label>
-                        <input type="number" id="personas" formControlName="comensales" min="1" max="20">
+                        <input type="number" id="personas" formControlName="party_size" min="1" max="20">
                     </div>
                 </div>
 
@@ -62,14 +62,16 @@
 
                 <div class="field field--full">
                     <label for="comentarios">Observaciones / Alergias</label>
-                    <textarea id="comentarios" rows="3" placeholder="Alergias, trona, etc."
-                        formControlName="comentarios"></textarea>
+                    <textarea id="comentarios" rows="3" formControlName="resena"></textarea>
                 </div>
 
                 <div class="actions">
                     <button type="button" class="btn btn--ghost" (click)="resetForm()">Limpiar</button>
                     <button type="submit" class="btn btn--solid" [disabled]="loading">
                         {{ loading ? 'Enviando...' : 'Confirmar reserva' }}
+                    </button>
+                    <button type="button" class="btn btn--user-dash" routerLink="/user-dashboard">
+                        <i class="fas fa-arrow-left"></i> Volver al dah de usuario terminar de enlazar
                     </button>
                 </div>
 

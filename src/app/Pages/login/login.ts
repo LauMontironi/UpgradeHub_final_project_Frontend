@@ -14,7 +14,7 @@ import Swal from 'sweetalert2';
 
 export class Login {
   usuarioService = inject(Usuarios);
-  Router = inject(Router);
+  router = inject(Router);
   // signal
   inputType = signal<string>('password');
 
@@ -59,10 +59,10 @@ async onSubmit() {
       // 4. REDIRECCIÓN SEGÚN ROL
       if (userData.rol === 'admin') {
         console.log('Es admin, yendo al dashboard...');
-        this.Router.navigateByUrl('/admin-dashboard');
+        this.router.navigateByUrl('/admin');
       } else {
         console.log('Es cliente, yendo a reserva...');
-        this.Router.navigateByUrl('/reserva');
+        this.router.navigateByUrl('/reserva');
       }
     } else {
       console.error('El servidor no envió Token o user correctamente');
