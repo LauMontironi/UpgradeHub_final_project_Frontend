@@ -54,6 +54,8 @@ export class AsignarPlatos implements OnInit { // Implementamos OnInit
   onRoleChange(plato: IPlato, event: any) {
     const rolElegido = event.target.value;
 
+    if (!plato.id) return;
+
     if (rolElegido === "") {
       this.platosParaAsignar = this.platosParaAsignar.filter(p => p.plato_id !== plato.id);
     } else {

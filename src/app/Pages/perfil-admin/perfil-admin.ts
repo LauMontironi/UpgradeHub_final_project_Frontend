@@ -24,7 +24,7 @@ export class PerfilAdmin {
   }
 
   irAGestionarPlatos() {
-  this.router.navigate(['/admin/gestion-platos']); //##TODO: HACER RUTAS PARA GESTIONAR MESAS
+  this.router.navigate(['lista_platos']); //##TODO: HACER RUTAS PARA GESTIONAR MESAS
 }
 
 irAGestionarMesas() {

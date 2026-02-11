@@ -1,7 +1,7 @@
 import { Injectable, inject} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
-import { IPlato } from '../Interfaces/IPlatos';
+import { IPlato, platoResponse } from '../Interfaces/IPlatos';
 
 
 @Injectable({
@@ -17,5 +17,26 @@ export class Platos {
     return firstValueFrom(
       this.HttpClient.get<IPlato[]>(`${this.base_url}/platos/platos`)
     )
+  }
+
+editarPlato(id: number, plato: IPlato) {
+  return firstValueFrom(
+    this.HttpClient.put<{ msg: string }>(`${this.base_url}/platos/${id}`, plato)
+  );
+}
+
+  delete_plato(id: number) {
+  return firstValueFrom(
+    this.HttpClient.delete<{ msg: string }>(`${this.base_url}/platos/${id}`)
+  )
+}
+
+  createPlato(plato: IPlato) {
+    return firstValueFrom(
+      this.HttpClient.post<platoResponse>(`${this.base_url}/platos`, plato)
+    )
+
+
+
   }
 }

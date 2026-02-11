@@ -14,6 +14,8 @@ import { NotFound } from './Pages/not-found/not-found';
 import { PerfilAdmin } from './Pages/perfil-admin/perfil-admin';
 import { ResenasComponent } from './Components/resenas/resenas';
 import { GestionReservas } from './Components/gestion-reservas/gestion-reservas';
+import { CreatePlato } from './Pages/create-platos/create-platos';
+import { EditPlato } from './Pages/edit-plato';
 
 
 export const routes: Routes = [
@@ -23,7 +25,7 @@ export const routes: Routes = [
     { path: 'login', component: Login },
     { path: 'registro', component: Registro },
     { path: 'lista_platos', component: ListaPlatos },
-    {path: 'admin', component: PerfilAdmin, canActivate: [authGuard]},
+    { path: 'admin', component: PerfilAdmin, canActivate: [authGuard]},
     { path: 'admin-dashnoard', component: AdminDashboard },
     { path: 'perfil-usuario', component: PerfilUsuario, canActivate: [authGuard] },
     { path: 'menus/:id', component: Menu },
@@ -31,7 +33,9 @@ export const routes: Routes = [
     { path: 'admin/reservas', component: GestionReservas },
     { path: 'admin/create-menu', component: CreateMenu },
     { path: 'admin/asignar-platos/:id', component: AsignarPlatos },
-    {path: 'resenas', component:ResenasComponent},
+    { path: 'resenas', component: ResenasComponent },
+    { path: 'admin/create-plato', component: CreatePlato },
+    {path: 'admin/edit-plato/:id', component: EditPlato},
     { path: '**', component: NotFound }
 
     
