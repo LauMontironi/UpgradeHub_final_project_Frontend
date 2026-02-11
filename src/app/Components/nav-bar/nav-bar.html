@@ -12,9 +12,15 @@
 
         <!-- Acciones derecha -->
         <div class="right-actions">
+            <a class="pill" routerLink="/">Inicio</a>
             <a class="pill" routerLink="/reserva">Reservar</a>
-            <a class="pill" routerLink="/pedidos">Hacer pedido</a>
-            <a class="pill" routerLink="/login">Mi cuenta</a>
+            @if (isLogged) {
+                <a class="pill" routerLink="/perfil-usuario">Mi Cuenta</a>
+                <button class="pill btn-logout-nav" (click)="onLogout()">Cerrar Sesión</button>
+            }
+            @if (!isLogged) {
+                <a class="pill" routerLink="/login">Mi Cuenta</a>
+            }
         </div>
     </nav>
 
@@ -50,23 +56,21 @@
                     (click)="closeMenu()">Reservas</a>
             </li>
 
-            <li>
-                <a class="drawer-pill" routerLink="/pedidos" routerLinkActive="active" (click)="closeMenu()">Pedidos</a>
-            </li>
-
             <li class="divider"></li>
 
-            <li class="auth">
-                <a class="drawer-pill auth-pill" routerLink="/login" routerLinkActive="active" (click)="closeMenu()">Log
-                    in</a>
+            @if (!isLogged) {
+                <li class="auth">
+                    <a class="drawer-pill auth-pill" routerLink="/login" routerLinkActive="active" (click)="closeMenu()">Log in</a> 
+                    <a class="drawer-pill auth-pill" routerLink="/registro" routerLinkActive="active"
+                        (click)="closeMenu()">Registro</a>
+                </li>
+            }
 
-                <a class="drawer-pill auth-pill" routerLink="/registro" routerLinkActive="active"
-                    (click)="closeMenu()">Registro</a>
-            </li>
-
-            <li>
-                <a href="#" class="drawer-pill" (click)="onLogout(); $event.preventDefault(); closeMenu()">Logout</a>
-            </li>
+            @if (isLogged) {
+                <li>
+                    <a href="#" class="drawer-pill" (click)="onLogout(); $event.preventDefault(); closeMenu()">Logout</a>
+                </li>
+            }
         </ul>
     </aside>
 </header>

@@ -90,6 +90,84 @@
     transform: translateY(-1px);
 }
 
+/* Botón Logout en Nav */
+.btn-logout-nav {
+    background: transparent;
+    border: 1.5px solid #e6dcc9;
+    color: #e6dcc9;
+}
+
+.btn-logout-nav:hover {
+    background: #e6dcc9;
+    color: #0e0f10;
+    transform: translateY(-1px);
+}
+
+/* OVERLAY */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 50;
+}
+
+.overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* DRAWER */
+.drawer {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    height: calc(100vh - 88px);
+    width: min(360px, 86vw);
+    background: #111214;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+    z-index: 60;
+    box-shadow: 20px 0 60px rgba(0, 0, 0, 0.45);
+    padding: 16px 16px 22px;
+}
+
+.drawer.open {
+    transform: translateX(0);
+}
+
+.drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 4px 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.drawer-title {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.close {
+    background: transparent;
+    border: 0;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 20px;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 10px;
+}
+
+.close:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+
 /* OVERLAY */
 .overlay {
     position: fixed;
@@ -166,6 +244,61 @@
 }
 
 /* PILL (drawer) - misma estética crema que el header */
+.drawer-pill {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+
+    padding: 12px 14px;
+    border-radius: 999px;
+
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+
+    background: #e6dcc9;
+    color: #0e0f10;
+
+    transition: transform .15s ease, background .15s ease;
+}
+
+.drawer-pill:hover {
+    background: #d8ceb9;
+    transform: translateY(-1px);
+}
+
+.drawer-pill.active {
+    background: #cfc3ac;
+}
+
+/* Separadores */
+.divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.12);
+    margin: 10px 0 14px;
+}
+
+/* Auth: dos pills en fila */
+.auth {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.auth-pill {
+    justify-content: center;
+}
+
+/* Responsive */
+@media (max-width: 820px) {
+
+    .right-actions .pill:nth-child(1),
+    .right-actions .pill:nth-child(2) {
+        display: none;
+    }
+}
 .drawer-pill {
     display: flex;
     align-items: center;

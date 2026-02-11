@@ -44,6 +44,7 @@ async onSubmit() {
       localStorage.setItem('token', token);
       localStorage.setItem('user_role', userData.rol);
       localStorage.setItem('user_name', userData.nombre);
+      localStorage.setItem('user_apellido', userData.apellido);
       
       console.log('Token y User guardados. Mostrando alerta...');
 
@@ -61,8 +62,8 @@ async onSubmit() {
         console.log('Es admin, yendo al dashboard...');
         this.router.navigateByUrl('/admin');
       } else {
-        console.log('Es cliente, yendo a reserva...');
-        this.router.navigateByUrl('/reserva');
+        console.log('Es cliente, yendo a perfil-usuario...');
+        this.router.navigateByUrl('/perfil-usuario');
       }
     } else {
       console.error('El servidor no envió Token o user correctamente');
@@ -82,6 +83,16 @@ async onSubmit() {
   
   cambiarTipoInput() {
     this.inputType.update(val => val === 'password' ? 'text' : 'password');
+  }
+
+// tengo que crear un condicional para que si el usuario es admin lo redireccione a admin y si es cliente a perfil-usuario, para eso tengo que guardar el rol del usuario en el localstorage al hacer login y luego leerlo aqui para redireccionar segun el rol, pero eso lo hago en el login, no aqui, aqui solo leo el rol del localstorage y redirecciono segun el rol, si es admin a admin y si es cliente a perfil-usuario 
+  ngOnInit() {
+    const userRole = localStorage.getItem('user_role');
+    if (userRole === 'admin') {
+      this.router.navigateByUrl('/admin');
+    } else if (userRole === 'cliente') {
+      this.router.navigateByUrl('/perfil-usuario');
+    }
   }
 
 }

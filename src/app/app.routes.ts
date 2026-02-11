@@ -7,6 +7,7 @@ import { Reserva } from './Pages/reservas/reservas';
 import { Pedidos } from './Pages/pedidos/pedidos';
 import { ListaPlatos } from './Pages/lista-platos/lista-platos';
 import { AdminDashboard } from './Pages/admin-dashboard/admin-dashboard';
+import { PerfilUsuario } from './Pages/perfil-usuario/perfil-usuario';
 import { authGuard } from './guards/auth-guard';
 import { CreateMenu } from './Components/create-menu/create-menu';
 import { AsignarPlatos } from './Pages/asignar-platos/asignar-platos';
@@ -22,6 +23,7 @@ export const routes: Routes = [
     { path: 'pedidos', component: Pedidos, canActivate: [authGuard] },
     { path: 'lista_platos', component: ListaPlatos },
     { path: 'admin', component: AdminDashboard, canActivate: [authGuard] },
+    { path: 'perfil-usuario', component: PerfilUsuario, canActivate: [authGuard] },
     { path: 'menus/:id', component: Menu },
     { path: 'reserva', component: Reserva, canActivate: [authGuard] },
     { path: 'admin/create-menu', component: CreateMenu },
