@@ -1,0 +1,69 @@
+:host {
+    display: block;
+    min-height: 100vh;
+    background: #121212;
+    color: #e6dcc9;
+    padding: 40px 20px;
+}
+
+h2 {
+    color: #ffc107;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+
+.lista-reservas {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.card-reserva {
+    background: #1d1d1d;
+    border-radius: 18px;
+    padding: 20px;
+    border: 1px solid rgba(255, 193, 7, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(230, 220, 201, 0.1);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    color: #ffc107;
+    font-weight: bold;
+}
+
+.badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Colores para los estados */
+.confirmada {
+    background: rgba(40, 167, 69, 0.2);
+    color: #28a745;
+}
+
+.cancelada {
+    background: rgba(220, 53, 69, 0.2);
+    color: #dc3545;
+}
+
+.completada {
+    background: rgba(0, 123, 255, 0.2);
+    color: #007bff;
+}
+
+.empty-msg {
+    text-align: center;
+    color: #aaa;
+    grid-column: 1 / -1;
+}

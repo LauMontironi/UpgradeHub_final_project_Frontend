@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core'; // Añadido OnInit
+import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core'; // Añadido OnInit y ChangeDetectorRef
 import { Menus } from '../../Services/menus';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router'; // Añadido RouterLink
 import { IVinculoPlato } from '../../Interfaces/IMenuDetalle';
@@ -7,10 +7,11 @@ import Swal from 'sweetalert2';
 import { UpperCasePipe } from '@angular/common';
 import { Platos } from '../../Services/platos';
 
+
 @Component({
   selector: 'app-asignar-platos',
   standalone: true,
-  imports: [UpperCasePipe, RouterLink], // Añadido RouterLink para el botón cancelar
+  imports: [UpperCasePipe, RouterLink],
   templateUrl: './asignar-platos.html',
   styleUrl: './asignar-platos.css',
 })
@@ -20,6 +21,7 @@ export class AsignarPlatos implements OnInit { // Implementamos OnInit
   private platosService = inject(Platos)// PARA TARER LOS PLATOS 
   private route = inject(ActivatedRoute);
   private router = inject(Router);
+  private cdr = inject(ChangeDetectorRef); // Inyectamos ChangeDetectorRef
 
   menuId!: number;
   listaPlatosDB: IPlato[] = []; 
@@ -27,7 +29,7 @@ export class AsignarPlatos implements OnInit { // Implementamos OnInit
 
   // --- PASO 1: CARGAR LOS DATOS AL ENTRAR ---
   async ngOnInit() {
-    // Obtenemos el ID de la URL ###TODO: ESTA PRIMERA PARTE ME LA DICE GEEMINI Y NO SE SI ES OK O SEA NO ENTIENDDO EL SNAPSHOT
+    // Obtenemos el ID de la URL 
     const idParam = this.route.snapshot.paramMap.get('id');
     this.menuId = Number(idParam);
     console.log('ID del menú capturado:', this.menuId);
@@ -39,6 +41,9 @@ export class AsignarPlatos implements OnInit { // Implementamos OnInit
       
       this.listaPlatosDB = response;
       console.log('Platos cargados en el componente:', this.listaPlatosDB);
+
+      // Forzamos la detección de cambios para asegurar que la vista se actualiza
+      this.cdr.markForCheck();
     } catch (error) {
       console.error('Error al cargar platos:', error);
       Swal.fire('Error', 'No se pudieron cargar los platos del sistema', 'error');
@@ -97,5 +102,4 @@ export class AsignarPlatos implements OnInit { // Implementamos OnInit
     }
   }
 
-  
 }

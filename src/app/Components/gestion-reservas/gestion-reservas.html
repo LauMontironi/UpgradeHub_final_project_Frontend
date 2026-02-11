@@ -1,0 +1,26 @@
+<div class="container">
+    <h2>{{ isAdmin ? 'Panel de Reservas (Admin)' : 'Mis Reservas' }}</h2>
+
+    <div class="lista-reservas">
+        @for (reserva of listaReservas; track reserva.id) {
+        <div class="card-reserva">
+            <div class="card-header">
+                <span class="fecha">{{ reserva.fecha }}</span>
+                <span class="hora">{{ reserva.hora }} hs</span>
+            </div>
+            <div class="card-body">
+                <p><strong>Comensales:</strong> {{ reserva.party_size }} personas</p>
+                <p><strong>Mesa:</strong> #{{ reserva.mesa_id }}</p>
+                <span class="badge" [ngClass]="reserva.estado">{{ reserva.estado }}</span>
+            </div>
+            @if (reserva.resena) {
+            <div class="card-footer">
+                <small>"{{ reserva.resena }}"</small>
+            </div>
+            }
+        </div>
+        } @empty {
+        <p class="empty-msg">No hay reservas registradas.</p>
+        }
+    </div>
+</div>

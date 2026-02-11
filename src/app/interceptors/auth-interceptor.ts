@@ -7,7 +7,7 @@ const token = localStorage.getItem('token');
 if (token) {
 const reqClone = req.clone({
 setHeaders: {
-Authorization:`Bearer ${token}`,
+Authorization: `Bearer ${token}`,
 },
 });
 return next(reqClone);

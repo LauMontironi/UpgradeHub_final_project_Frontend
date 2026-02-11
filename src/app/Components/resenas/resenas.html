@@ -1,0 +1,19 @@
+<div class="container">
+    <h2>{{ isAdmin ? 'Gestión de Reseñas (Admin)' : 'Mis Reseñas' }}</h2>
+
+    @if (isAdmin) {
+    <div class="lista-resenas">
+        @for (resena of listaResenas; track resena.id) {
+        <div class="card-resena">
+            <p>{{ resena.comentario }}</p>
+            <span>Puntuación: {{ resena.puntuacion }}/5</span>
+            <small>Escrita por: {{ resena.nombre }}</small>
+        </div>
+        } @empty {
+        <p>No hay reseñas para mostrar todavía.</p>
+        }
+    </div>
+    } @else {
+    <p>Próximamente: Aquí podrás gestionar tus reseñas.</p>
+    }
+</div>

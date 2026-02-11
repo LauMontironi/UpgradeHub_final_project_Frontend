@@ -39,7 +39,7 @@ export class Menus {
   
   vincularPlato(datos: IVinculoPlato) {
     return firstValueFrom(
-      this.HttpClient.post<any>(`${this.base_url}/menu-semanal-platos`, datos)
+      this.HttpClient.post<any>(`${this.base_url}/menus-semanales/vincular-plato`, datos)
     );
 
 // ###TODO: me marie con este any no se que poner aca 

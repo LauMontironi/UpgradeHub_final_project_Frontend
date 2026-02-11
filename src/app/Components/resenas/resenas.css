@@ -1,0 +1,95 @@
+/* Aseguramos que el componente sea oscuro de fondo */
+:host {
+    display: block;
+    min-height: 100vh;
+    background: #121212;
+    color: #e6dcc9;
+    /* Tu color crema suave */
+    padding: 40px 20px;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+h2 {
+    color: #ffc107;
+    /* Dorado Admin */
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+    text-align: center;
+    border-bottom: 2px solid rgba(255, 193, 7, 0.2);
+    padding-bottom: 15px;
+}
+
+/* Grid de tarjetas similar a tu estructura de cajas */
+.lista-resenas {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+}
+
+/* Tarjeta de Reseña Estilo Premium */
+.card-resena {
+    background: #1d1d1d;
+    /* Igual que tu .carousel-inner */
+    border-radius: 18px;
+    padding: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+    border: 1px solid rgba(230, 220, 201, 0.1);
+    /* Borde muy sutil crema */
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.card-resena:hover {
+    transform: translateY(-8px);
+    border-color: #ffc107;
+    box-shadow: 0 15px 35px rgba(255, 193, 7, 0.1);
+}
+
+/* El comentario del cliente */
+.card-resena p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #e6dcc9;
+    font-style: italic;
+    margin: 0;
+}
+
+/* Las estrellas/puntuación */
+.card-resena span {
+    color: #ffc107;
+    font-weight: bold;
+    font-size: 0.9rem;
+    background: rgba(255, 193, 7, 0.1);
+    padding: 5px 12px;
+    border-radius: 20px;
+    width: fit-content;
+}
+
+/* El nombre del autor con el blur que te gusta */
+.card-resena small {
+    margin-top: 10px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(230, 220, 201, 0.1);
+    color: #ffc107;
+    text-align: right;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+/* Mensaje cuando no hay reseñas */
+.empty-msg {
+    text-align: center;
+    padding: 50px;
+    background: #1d1d1d;
+    border-radius: 18px;
+    color: #aaa;
+    border: 1px dashed rgba(230, 220, 201, 0.2);
+}

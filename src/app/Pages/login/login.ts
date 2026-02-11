@@ -45,6 +45,7 @@ async onSubmit() {
       localStorage.setItem('user_role', userData.rol);
       localStorage.setItem('user_name', userData.nombre);
       localStorage.setItem('user_apellido', userData.apellido);
+      if (userData.id) localStorage.setItem('user_id', userData.id.toString());
       
       console.log('Token y User guardados. Mostrando alerta...');
 
