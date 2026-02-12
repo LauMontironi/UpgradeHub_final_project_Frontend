@@ -1,10 +1,10 @@
+import { MisReservas } from './Pages/mis-reservas/mis-reservas';
 import { Component } from '@angular/core';
 import { Menu } from './Pages/menu/menu';
 import { Routes } from '@angular/router';
 import { Home } from './Pages/home/home';
 import { Login } from './Pages/login/login';
 import { Registro } from './Pages/registro/registro';
-import { Reserva } from './Pages/reservas/reservas';
 import { ListaPlatos } from './Pages/lista-platos/lista-platos';
 import { AdminDashboard } from './Pages/admin-dashboard/admin-dashboard';
 import { PerfilUsuario } from './Pages/perfil-usuario/perfil-usuario';
@@ -18,6 +18,7 @@ import { GestionReservas } from './Components/gestion-reservas/gestion-reservas'
 import { CreatePlato } from './Pages/create-platos/create-platos';
 import { EditPlato } from './Pages/edit-plato';
 import { EditMenu } from './Pages/edit-menu/edit-menu';
+import { Reserva } from './Pages/reservas/reservas';
 
 
 export const routes: Routes = [
@@ -31,7 +32,8 @@ export const routes: Routes = [
     { path: 'admin-dashnoard', component: AdminDashboard },
     { path: 'perfil-usuario', component: PerfilUsuario, canActivate: [authGuard] },
     { path: 'menus/:id', component: Menu },
-    { path: 'reserva', component: Reserva, canActivate: [authGuard] },
+     { path: 'reserva', component: Reserva, canActivate: [authGuard] },
+    { path: 'mis-reservas', component: MisReservas, canActivate: [authGuard] },
     { path: 'admin/reservas', component: GestionReservas },
     { path: 'admin/create-menu', component: CreateMenu },
     { path: 'admin/asignar-platos/:id', component: AsignarPlatos },

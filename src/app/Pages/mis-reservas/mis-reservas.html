@@ -1,0 +1,69 @@
+<!-- Mis reservas -->
+<section class="card">
+    <div class="text-start">
+        <button class="btn btn-outline-warning mb-4" routerLink="/perfil-usuario">
+            <i class="bi bi-arrow-left me-2"></i> Volver a mi Perfil
+        </button>
+    </div>
+   
+    <h1 class="card-title">Mis reservas</h1>
+
+    @if (loading()) {
+    <p class="state">Cargando reservas…</p>
+    }
+    @if (!loading() && error()) {
+    <p class="state error">{{ error() }}</p>
+    }
+
+    @if (!loading() && !error() && reservas().length === 0) {
+    <p class="state">
+        No tienes reservas todavía.
+    </p>
+    }
+
+    @if (!loading() && !error() && reservas().length > 0) {
+    <div class="res-list">
+        @for (r of reservas(); track r.id) {
+        <article class="res-item">
+            <div class="res-grid">
+                <div class="cell">
+                    <span class="label">Fecha</span>
+                    <span class="value">{{ r.fecha }}</span>
+                </div>
+
+                <div class="cell">
+                    <span class="label">Hora</span>
+                    <span class="value">{{ r.hora }}</span>
+                </div>
+
+                <div class="cell">
+                    <span class="label">Personas</span>
+                    <span class="value">{{ r.party_size }}</span>
+                </div>
+
+                <div class="cell">
+                    <span class="label">Estado</span>
+                    <span class="value">{{ estadoLabel(r.estado) }}</span>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button class="btn btn-outline-like" (click)="cancelar(r)" [disabled]="r.estado === 'cancelada'">
+                    Cancelar
+                </button>
+
+                <button class="btn btn-gold-like" (click)="resenar(r)" [disabled]="!puedeResenar(r)">
+                    Reseña
+                </button>
+            </div>
+
+            @if (r.resena) {
+            <p class="review">
+                "{{ r.resena }}"
+            </p>
+            }
+        </article>
+        }
+    </div>
+    }
+</section>

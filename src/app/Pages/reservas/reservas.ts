@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ReservaService } from '../../Services/reserva-service';
 import { IMesa } from '../../Interfaces/IMesa';
 import Swal from 'sweetalert2';
@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-reserva',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './reservas.html',
   styleUrl: './reservas.css'
 })

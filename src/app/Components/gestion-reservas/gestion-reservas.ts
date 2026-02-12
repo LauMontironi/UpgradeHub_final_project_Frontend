@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { ReservaService } from '../../Services/reserva-service'; 
 import { IReserva } from '../../Interfaces/IReserva';
 import { DatePipe, NgClass } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-gestion-reservas', // Tu selector
