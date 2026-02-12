@@ -1,0 +1,150 @@
+.profile {
+    min-height: 100vh;
+    background: #0b0b0b;
+    color: #e7e1d4;
+    padding: 40px 20px;
+}
+
+.title {
+    text-align: center;
+    margin: 0 0 22px;
+    font-size: clamp(36px, 4.5vw, 52px);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+}
+
+/* Tarjetas */
+.card {
+    max-width: 920px;
+    margin: 0 auto 16px;
+    background: #111;
+    border-radius: 18px;
+    padding: 18px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+}
+
+.card-title {
+    margin: 0 0 12px;
+    font-size: 20px;
+    font-weight: 900;
+}
+
+/* Grid datos usuario */
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 16px;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(231, 225, 212, 0.08);
+}
+
+.row:last-child {
+    border-bottom: none;
+}
+
+.label {
+    color: rgba(231, 225, 212, 0.7);
+    font-weight: 800;
+}
+
+.value {
+    font-weight: 900;
+}
+
+/* Estado */
+.state {
+    text-align: center;
+    color: rgba(231, 225, 212, 0.8);
+    margin: 10px 0 0;
+}
+
+.state.error {
+    color: #ffb4b4;
+}
+
+/* Reservas */
+.res-list {
+    margin-top: 8px;
+}
+
+.res-item {
+    padding: 14px 0;
+    border-top: 1px solid rgba(231, 225, 212, 0.12);
+}
+
+.res-item:first-child {
+    border-top: none;
+}
+
+.res-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 16px;
+}
+
+.cell {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+/* Botones */
+.actions {
+    margin-top: 12px;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.btn {
+    border: 2px solid #e7e1d4;
+    background: #e7e1d4;
+    color: #111;
+    border-radius: 999px;
+    padding: 10px 16px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.btn:hover {
+    transform: scale(1.03);
+}
+
+.btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn.danger {
+    background: transparent;
+    color: #e7e1d4;
+}
+
+.btn.danger:hover {
+    background: rgba(231, 225, 212, 0.08);
+}
+
+/* Reseña */
+.review {
+    margin: 10px 0 0;
+    color: rgba(231, 225, 212, 0.85);
+    font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+
+    .grid,
+    .res-grid {
+        grid-template-columns: 1fr;
+    }
+}
