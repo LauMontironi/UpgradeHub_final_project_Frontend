@@ -42,6 +42,12 @@ export class Menus {
       this.HttpClient.post<any>(`${this.base_url}/menus-semanales/vincular-plato`, datos)
     );
 
-// ###TODO: me marie con este any no se que poner aca 
+    // ###TODO: me marie con este any no se que poner aca 
+  }
+
+  updateMenu(id: number, menu: IMenu) {
+    return firstValueFrom(
+      this.HttpClient.put<{ "msg": string }>(`${this.base_url}/menus-semanales/${id}`, menu)
+    )
   }
 }

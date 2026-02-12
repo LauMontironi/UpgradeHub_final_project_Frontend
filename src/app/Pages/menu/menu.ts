@@ -27,7 +27,7 @@ export class Menu {
       console.log(response);
       this.arrMenu.set(response);
 
-      //preguntar a mario esta parte es porque quiero usar el compinente creado para otro padre. me hizo poner la ruta, el active y esto ) funciona pero tarda
+      //###TODO: preguntar a mario esta parte es porque quiero usar el compinente creado para otro padre. me hizo poner la ruta, el active y esto ) funciona pero tarda
       const idParam = this.route.snapshot.paramMap.get('id');
         if (idParam) {
             this.cargarDetalle(Number(idParam));
@@ -41,62 +41,5 @@ export class Menu {
 
 
 
-  //lo comento porque estaba todo perfect pero como estos datos los traigo del back esto no hace falta 
-  // menus = [
-  //   {
-  //     id: 1,
-  //     nombre: '',
-  //     precio: 0,
-  //     descripcion: '',
-  //     alergenos: ''
-  //   },
- 
-  //   {
-  //     id: 2,
-  //     nombre: '',
-  //     precio: 0,
-  //     descripcion: '',
-  //     alergenos: '',
-  //   },
- 
-  //   {
-  //     id: 3,
-  //     nombre: '',
-  //     precio: 0,
-  //     descripcion: '',
-  //     alergenos: ''
-  //   },
- 
-  //   {
-  //     id: 4,
-  //     nombre: '',
-  //     precio: 0,
-  //     descripcion: '',
-  //     alergenos: ''
-  //   },
-    
-  //   {
-  //     id: 5,
-  //     nombre: '',
-  //     precio: 0,
-  //     descripcion: '',
-  //     alergenos: ''
-  //   },
- 
-  //   {
-  //     id: 6,
-  //     nombre: '',
-  //     precio: 0,
-  //     descripcion: '',
-  //     alergenos: ''
-  //   },
-    
-  //   {
-  //     id: 7,
-  //     nombre: '',
-  //     precio: 0,
-  //     descripcion: '',
-  //     alergenos: ''
-  //   },
-  // ];
+
 }

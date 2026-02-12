@@ -1,3 +1,4 @@
+import { Component } from '@angular/core';
 import { Menu } from './Pages/menu/menu';
 import { Routes } from '@angular/router';
 import { Home } from './Pages/home/home';
@@ -16,6 +17,7 @@ import { ResenasComponent } from './Components/resenas/resenas';
 import { GestionReservas } from './Components/gestion-reservas/gestion-reservas';
 import { CreatePlato } from './Pages/create-platos/create-platos';
 import { EditPlato } from './Pages/edit-plato';
+import { EditMenu } from './Pages/edit-menu/edit-menu';
 
 
 export const routes: Routes = [
@@ -35,7 +37,8 @@ export const routes: Routes = [
     { path: 'admin/asignar-platos/:id', component: AsignarPlatos },
     { path: 'resenas', component: ResenasComponent },
     { path: 'admin/create-plato', component: CreatePlato },
-    {path: 'admin/edit-plato/:id', component: EditPlato},
+    { path: 'admin/edit-plato/:id', component: EditPlato },
+    { path: 'admin/edit-menu/:id',component: EditMenu },
     { path: '**', component: NotFound }
 
     
