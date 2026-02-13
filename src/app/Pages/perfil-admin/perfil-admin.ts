@@ -31,9 +31,15 @@ irAGestionarMesas() {
   this.router.navigate(['admin/gestion-mesas']);
 }
   logout() {
-    localStorage.removeItem('token'); // O tu lógica de logout
-    this.router.navigate(['/login']);
-  }
+  localStorage.removeItem('token');
+  localStorage.removeItem('user');
+  localStorage.removeItem('user_role');
+  localStorage.removeItem('user_name');
+  localStorage.removeItem('user_apellido');
+  localStorage.removeItem('user_id');
+
+  this.router.navigateByUrl('/login');
+}
 }
 
 

@@ -227,3 +227,24 @@
 	padding: 40px;
 	color: rgba(255, 255, 255, 0.5);
 }
+
+.review-box p,
+.review-box span {
+	color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.review-box {
+	margin-top: 15px;
+	padding: 15px;
+	background: rgba(230, 220, 201, 0.06);
+	border-radius: 8px;
+	border-left: 3px solid #d4af37;
+}
+
+.review-box * {
+	color: rgba(255, 255, 255, 0.88) !important;
+}
+
+.review-box i {
+	color: #d4af37 !important;
+}

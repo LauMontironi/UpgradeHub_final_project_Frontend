@@ -82,6 +82,7 @@ export class Reserva implements OnInit {
 
   // Envío del formulario
   async onSubmit() {
+    console.log('SUBMIT DISPARADO', this.reservaForm.value);
     if (this.reservaForm.invalid) {
       this.reservaForm.markAllAsTouched();
       return;

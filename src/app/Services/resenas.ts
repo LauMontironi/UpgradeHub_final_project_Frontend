@@ -29,6 +29,13 @@ export class Resenas {
       this.http.put<{ msg: string }>(`${this.base_url}/resenas/${id}`, resena)
     );
   }
+
+  getMisResenas() {
+  return firstValueFrom(
+    this.http.get<IResena[]>(`${this.base_url}/resenas/mis-resenas`)
+  );
+}
+
 }
 
 
