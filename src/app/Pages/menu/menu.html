@@ -59,6 +59,18 @@
 <section class="py-5" style="background-color: #1a1a1a;">
     <div class="container">
 
+    <div class="mb-4">
+        @if (isAdmin()) {
+        <button routerLink="/admin-dashnoard" class="btn btn-outline-light btn-sm">
+            <i class="bi bi-speedometer2 me-2"></i> Volver al Panel Admin
+        </button>
+        } @else {
+        <button routerLink="/" class="btn btn-outline-light btn-sm">
+            <i class="bi bi-house-door me-2"></i> Volver al Inicio
+        </button>
+        }
+    </div>
+
         @if (menuSeleccionado()) {
         <button class="btn btn-outline-warning mb-4" (click)="menuSeleccionado.set(null)">
             <i class="bi bi-arrow-left me-2"></i> Volver a todos los menús

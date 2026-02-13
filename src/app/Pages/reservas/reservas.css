@@ -130,7 +130,7 @@ input,
 select,
 textarea {
     width: 100%;
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.01);
     border: 1px solid rgba(255, 255, 255, 0.10);
     color: rgba(255, 255, 255, 0.92);
     border-radius: 14px;
@@ -272,4 +272,17 @@ textarea:focus {
     margin: 0 0 8px;
     color: rgba(255, 255, 255, 0.75);
     line-height: 1.5;
+}
+
+select option {
+    background-color: #1a1a1a;
+ 
+    color: #e6dcc9;
+ 
+}
+
+select {
+    cursor: pointer;
+    appearance: none;
+  
 }

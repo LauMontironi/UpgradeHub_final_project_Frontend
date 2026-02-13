@@ -1,23 +1,24 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, OnInit, inject } from '@angular/core';
 import { IReserva } from '../../Interfaces/IReserva';
 import { IUsuario } from '../../Interfaces/IUsuario';
 import { ReservaService } from '../../Services/reserva-service';
 import { RouterLink } from '@angular/router';
+import Swal from 'sweetalert2'; // <--- Importamos SweetAlert2
 
 @Component({
   selector: 'app-mis-reservas',
+  standalone: true,
   imports: [RouterLink],
   templateUrl: './mis-reservas.html',
   styleUrl: './mis-reservas.css',
 })
-export class MisReservas {
- usuario: IUsuario | null = null;
-
+export class MisReservas implements OnInit {
+  usuario: IUsuario | null = null;
   reservas = signal<IReserva[]>([]);
   loading = signal(true);
   error = signal('');
 
-  constructor(private reservaService: ReservaService) {}
+  private reservaService = inject(ReservaService);
 
   async ngOnInit() {
     this.usuario = this.getUsuarioLocal();
@@ -36,64 +37,107 @@ export class MisReservas {
   async cargarReservas() {
     this.loading.set(true);
     this.error.set('');
-
     try {
       const response = await this.reservaService.getMisReservas();
       this.reservas.set(response);
-      console.log('Reservas cargadas:', this.reservas());
     } catch (e) {
-      console.log(e);
-      this.error.set('No se pudieron cargar tus reservas. ¿Has iniciado sesión?');
+      this.error.set('No se pudieron cargar tus reservas.');
     } finally {
       this.loading.set(false);
     }
   }
 
   estadoLabel(estado?: IReserva['estado']) {
-    if (!estado) return '—';
-    if (estado === 'confirmada') return 'Confirmada';
-    if (estado === 'cancelada') return 'Cancelada';
-    if (estado === 'completada') return 'Completada';
-    return estado;
+    const labels: any = {
+      confirmada: 'Confirmada',
+      cancelada: 'Cancelada',
+      completada: 'Completada'
+    };
+    return labels[estado || ''] || estado || '—';
   }
 
   puedeResenar(r: IReserva): boolean {
-    // no reseñamos si está cancelada
     if (r.estado === 'cancelada') return false;
-
-    // reseña solo si fecha+hora ya pasó
     const fechaHora = new Date(`${r.fecha}T${r.hora}`);
     return fechaHora.getTime() < Date.now();
   }
 
+  // --- ALERTA DE CANCELACIÓN ---
   async cancelar(r: IReserva) {
     if (!r.id) return;
 
-    const ok = confirm('¿Seguro que quieres cancelar esta reserva?');
-    if (!ok) return;
+    const result = await Swal.fire({
+      title: '¿Estás seguro?',
+      text: "No podrás revertir la cancelación de esta reserva.",
+      icon: 'warning',
+      showCancelButton: true,
+      background: '#1a1a1a',
+      color: '#e6dcc9',
+      confirmButtonColor: '#d4af37',
+      cancelButtonColor: '#333',
+      confirmButtonText: 'Sí, cancelar reserva',
+      cancelButtonText: 'No, mantener'
+    });
 
-    try {
-      await this.reservaService.cancelarReserva(r.id);
-      // quita de la lista sin recargar todo
-      this.reservas.set(this.reservas().filter(x => x.id !== r.id));
-    } catch (e) {
-      alert('No se pudo cancelar la reserva.');
+    if (result.isConfirmed) {
+      try {
+        await this.reservaService.cancelarReserva(r.id);
+        this.reservas.set(this.reservas().filter(x => x.id !== r.id));
+        
+        Swal.fire({
+          title: '¡Cancelada!',
+          text: 'Tu reserva ha sido anulada con éxito.',
+          icon: 'success',
+          background: '#1a1a1a',
+          color: '#e6dcc9',
+          confirmButtonColor: '#d4af37'
+        });
+      } catch (e) {
+        Swal.fire('Error', 'No se pudo cancelar la reserva.', 'error');
+      }
     }
   }
 
+  // --- ALERTA DE RESEÑA (INPUT) ---
   async resenar(r: IReserva) {
     if (!r.id) return;
 
-    const resena = prompt('Escribe tu reseña:');
-    if (!resena) return;
+    const { value: resena } = await Swal.fire({
+      title: 'Tu experiencia en el restaurante',
+      input: 'textarea',
+      inputLabel: '¿Qué te pareció la comida?',
+      inputPlaceholder: 'Escribe tu reseña aquí...',
+      inputValue: r.resena || '',
+      background: '#1a1a1a',
+      color: '#e6dcc9',
+      inputAttributes: {
+        'aria-label': 'Escribe tu reseña'
+      },
+      showCancelButton: true,
+      confirmButtonColor: '#d4af37',
+      cancelButtonColor: '#333',
+      confirmButtonText: 'Enviar reseña',
+      cancelButtonText: 'Cancelar'
+    });
 
-    try {
-      await this.reservaService.enviarReview({ reserva_id: r.id, resena });
-      alert('¡Gracias por tu reseña! 🍣');
-      // refleja en UI
-      r.resena = resena;
-    } catch (e) {
-      alert('No se pudo enviar la reseña.');
+    if (resena) {
+      try {
+        await this.reservaService.enviarReview({ reserva_id: r.id, resena });
+        
+        Swal.fire({
+          title: '¡Enviada!',
+          text: 'Gracias por compartir tu opinión con nosotros. 🍣',
+          icon: 'success',
+          background: '#1a1a1a',
+          color: '#e6dcc9',
+          confirmButtonColor: '#d4af37'
+        });
+        
+        // Actualizamos localmente para mostrarla de inmediato
+        r.resena = resena;
+      } catch (e) {
+        Swal.fire('Error', 'No pudimos guardar tu reseña.', 'error');
+      }
     }
   }
 }

@@ -25,7 +25,7 @@ import { CalendarioMenus } from './Pages/calendario-menus/calendario_reservas.';
 
 export const routes: Routes = [
 // --- RUTAS PÚBLICAS (Sin Guard) ---
-// --- PÚBLICAS (Sin cambios) ---
+
     { path: '', component: Home },
     { path: 'landing', component: Home },
     { path: 'menus', component: Menu },

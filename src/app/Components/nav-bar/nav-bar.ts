@@ -1,23 +1,32 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { Router, RouterLink, RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, inject } from '@angular/core';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
-  selector: 'app-nav-bar',
-  imports: [RouterLink, RouterModule, CommonModule],
+  selector: 'app-navbar',
+  standalone: true,
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './nav-bar.html',
-  styleUrl: './nav-bar.css',
+  styleUrl: './nav-bar.css'
 })
-export class NavBar implements OnInit {
-
-  router = inject(Router);
+export class Navbar implements OnInit {
+  private router = inject(Router);
   
   menuOpen = false;
   isLogged = false;
+  isAdmin = false;
 
   ngOnInit() {
-    // Verificar si hay usuario logeado
-    this.isLogged = !!localStorage.getItem('token');
+    this.checkLoginStatus();
+  }
+
+  checkLoginStatus() {
+    // 1. Verificamos si existe el usuario (ajusta 'user' o 'token' según lo que guardes)
+    const user = localStorage.getItem('user');
+    this.isLogged = !!user;
+
+    // 2. Verificamos el rol (ajusta 'user_role' según tu clave en localStorage)
+    const role = localStorage.getItem('user_role');
+    this.isAdmin = (role === 'admin');
   }
 
   toggleMenu() {
@@ -29,9 +38,10 @@ export class NavBar implements OnInit {
   }
 
   onLogout() {
-    localStorage.clear();
+    // Limpiamos todo el rastro del usuario
+    localStorage.clear(); 
     this.isLogged = false;
-    this.router.navigateByUrl('/login');
+    this.isAdmin = false;
+    this.router.navigate(['/login']);
   }
-
 }
