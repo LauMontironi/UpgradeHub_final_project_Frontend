@@ -41,7 +41,9 @@ export class Registro {
     // ]),
     alergias: new FormControl(''),
     edad: new FormControl(null, [
-      Validators.required]),
+      Validators.required,
+      this.ageValidator.bind(this)
+    ]),
     password: new FormControl('', [
       Validators.required
     ]),
@@ -136,6 +138,17 @@ export class Registro {
     return this.registroForm.hasError(errorName) && (this.registroForm.get('password')?.touched || this.registroForm.get('confirmPassword')?.touched)
   }
 
+  ageValidator(control: AbstractControl): ValidationErrors | null {
+    const value = control.value;
+    // Si el campo está vacío, retornamos null (la validación de 'requerido' se hace aparte)
+    if (!value) return null;
+
+    if (value < 18) {
+      return { menorDeEdad: true };
+    }
+    return null;
+  }
+
   cambiarTipoInput(field: 'password' | 'confirmPassword') {
     if (field === 'password') {
       this.inputTypePassword.update(val => val === 'password' ? 'text' : 'password');
@@ -143,8 +156,4 @@ export class Registro {
       this.inputTypeConfirmPassword.update(val => val === 'password' ? 'text' : 'password');
     }
   }
-
-
-
-
 }

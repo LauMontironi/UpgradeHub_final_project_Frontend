@@ -68,10 +68,11 @@ export class Reserva implements OnInit {
     }
   }
 
-  // Filtra las mesas según la capacidad de personas
+  // Filtra las mesas según la capacidad: si 1 persona muestra mesas de 2, si no igualdad exacta
   private filtrarMesasDisponibles() {
     const personas = this.reservaForm.get('party_size')?.value;
-    this.mesasDisponibles = this.mesas.filter(mesa => mesa.capacidad >= personas);
+    const capacidadBuscada = personas === 1 ? 2 : personas;
+    this.mesasDisponibles = this.mesas.filter(mesa => mesa.capacidad === capacidadBuscada);
   }
 
   // Helper para mostrar errores en el HTML
