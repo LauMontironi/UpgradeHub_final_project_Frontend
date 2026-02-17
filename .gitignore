@@ -43,3 +43,7 @@ __screenshots__/
 .DS_Store
 Thumbs.db
 firebase-debug.log
+
+# Firebase local
+.firebase/
+

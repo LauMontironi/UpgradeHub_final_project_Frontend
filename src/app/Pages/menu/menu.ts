@@ -27,18 +27,6 @@ export class Menu {
   
     isAdmin = signal(false)
   
-  //   async ngOnInit() {
-  //     const response= await this.MenuService.getAll();
-  //     console.log(response);
-  //     this.arrMenu.set(response);
-
-  //     //###TODO: preguntar a mario esta parte es porque quiero usar el compinente creado para otro padre. me hizo poner la ruta, el active y esto ) funciona pero tarda
-  //     const idParam = this.route.snapshot.paramMap.get('id');
-  //       if (idParam) {
-  //           this.cargarDetalle(Number(idParam));
-  //       }
-  // }
-
   async ngOnInit() {
     const role = localStorage.getItem('user_role')?.replace(/"/g, '');
 
@@ -63,15 +51,6 @@ export class Menu {
     }
   }
   
-//   async cargarDetalle(id: number) {
-//     const detalle = await this.MenuService.getMenuId(id);
-//     this.menuSeleccionado.set(detalle);
-//   }
-
-//   async desvincularPlato(platoId: number) {
-//   await this.MenuService.desvincularPlato(platoId);
-  
-// }
 
   async cargarDetalle(id: number) {
     try {
