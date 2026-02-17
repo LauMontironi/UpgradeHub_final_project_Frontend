@@ -1,14 +1,15 @@
 import { Component, inject, signal } from '@angular/core';
 import { IMenuDetalle } from '../../Interfaces/IMenuDetalle';
 import { Menus } from '../../Services/menus';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CardMenu } from '../../Components/card-menu/card-menu';
 import Swal from 'sweetalert2';
 import { Platos } from '../../Services/platos';
 
 @Component({
   selector: 'app-menu-detail',
-  imports: [CardMenu],
+  standalone: true,  
+  imports: [CardMenu, RouterLink],
   templateUrl: './menu-detail.html',
   styleUrl: './menu-detail.css',
 })

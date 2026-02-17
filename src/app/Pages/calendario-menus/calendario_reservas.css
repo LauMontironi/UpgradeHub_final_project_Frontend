@@ -8,6 +8,14 @@
     color: white;
 }
 
+:host {
+    display: block;
+    min-height: 100vh;
+    background: #1a1a1a;
+    padding: 24px 0;
+}
+
+
 :host ::ng-deep .fc-theme-standard td,
 :host ::ng-deep .fc-theme-standard th {
     background-color: #1a1a1a;
