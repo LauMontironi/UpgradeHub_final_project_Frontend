@@ -3,9 +3,15 @@
 <section class="py-5 menus-section">
     <div class="container">
 
+        @if (isAdmin()) {
         <button routerLink="/admin-dashboard" class="btn btn-outline-warning mb-4">
             <i class="bi bi-arrow-left me-2"></i> Volver a todos los menús
         </button>
+        } @else {
+        <button routerLink="/menus" class="btn btn-outline-warning mb-4">
+            <i class="bi bi-arrow-left me-2"></i> Volver a menús
+        </button>
+        }
 
         @if (menuSeleccionado()) {
 
